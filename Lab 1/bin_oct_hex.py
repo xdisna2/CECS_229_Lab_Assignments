@@ -10,10 +10,44 @@
 			#. if num has letters, they will always be captialized
 			#  base will be 2, 8, or 16
 def to_decimal(num, base):
-	pass
+	# Sets up index for power
+	idx = len(num) - 1
+	sum = 0
 
+	# If its a hex number value beyond 9, then use this list
+	hex_letters = [10, 'A', 'B', 'C', 'D', 'E', 'F']
 
+	# Loops through each string value
+	for element in num:
 
+		# Basically if the string represents a DIGIT do this...
+		if element.isdigit():
+			# Change the value to an integer and assign temporary variable
+			x = int(element)
+			# Figure out the value of the digit
+			order = x * (base ** idx)
+
+		# Else its a Letter
+		else:
+			# Cycle through given list of letters
+			for letter in hex_letters:
+				# If one of the matches do the calculations
+				if letter == element:
+					# We use the index + 9 (since hex goes to 0-9)
+					x = hex_letters.index(element) + 9
+					order = x * (base ** idx)
+					# Most important is to exit the loop!
+					break
+				# However if it doesn't match continue on
+				else:
+					continue
+		# At the end of the operation, add to total
+		sum += order
+
+		# Decrement index power
+		idx -= 1
+
+	return sum
 
 # funtion name: to_base
 # input: dec_num (a positive decimal integer)- ex: 1, 6, 10, 68, 102...
@@ -25,6 +59,7 @@ def to_decimal(num, base):
 # assumptions: dec_num will always be non-negative
 			#  base will be 2, 8, or 16				
 def to_base(dec_num, base):
+	# Convert to a list and then use index
 	pass
 
 
