@@ -12,42 +12,27 @@
 def to_decimal(num, base):
 	# Sets up index for power
 	idx = len(num) - 1
-	sum = 0
+	total = 0
 
 	# If its a hex number value beyond 9, then use this list
-	hex_letters = [10, 'A', 'B', 'C', 'D', 'E', 'F']
+	number_range = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
 
 	# Loops through each string value
 	for element in num:
 
-		# Basically if the string represents a DIGIT do this...
-		if element.isdigit():
-			# Change the value to an integer and assign temporary variable
-			x = int(element)
-			# Figure out the value of the digit
-			order = x * (base ** idx)
+		# Matches element string to index of list to get the numerical integer value
+		x = number_range.index(element)
 
-		# Else its a Letter
-		else:
-			# Cycle through given list of letters
-			for letter in hex_letters:
-				# If one of the matches do the calculations
-				if letter == element:
-					# We use the index + 9 (since hex goes to 0-9)
-					x = hex_letters.index(element) + 9
-					order = x * (base ** idx)
-					# Most important is to exit the loop!
-					break
-				# However if it doesn't match continue on
-				else:
-					continue
+		# Calculates the value of that order
+		order = x * (base ** idx)
+
 		# At the end of the operation, add to total
-		sum += order
+		total += order
 
 		# Decrement index power
 		idx -= 1
 
-	return sum
+	return total
 
 # funtion name: to_base
 # input: dec_num (a positive decimal integer)- ex: 1, 6, 10, 68, 102...
@@ -59,12 +44,34 @@ def to_decimal(num, base):
 # assumptions: dec_num will always be non-negative
 			#  base will be 2, 8, or 16				
 def to_base(dec_num, base):
-	# Convert to a list and then use index
-	pass
+	converted = []
+	total = ''
+	fin = True
+	# If its a hex number value beyond 9, then use this list
+	number_range = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
 
+	while fin:
+		# Take the dec_num and divide by base floored
+		number = dec_num // base
 
+		# Find the remainder
+		remainder = dec_num % base
 
+		# Theoretically take the index of the remainder and concatenate to converted list
+		converted.append(number_range[remainder])
 
+		# Update for the next new number to be divided
+		dec_num = number
+
+		# If the number can't be divided more, then end the loop
+		if number == 0:
+			fin = False
+
+	# Flip the outputs to correct order
+	for i in range(len(converted) - 1, -1, -1):
+		total += converted[i]
+
+	return total
 
 # test cases
 # These MUST be commented out or deleted in your submission
@@ -83,7 +90,6 @@ print(to_base(3424, 8)) # '6540'
 print(to_base(5212, 8)) # '12134'
 print(to_base(16423, 16)) # '4027'
 print(to_base(15967, 16)) # '3E5F'
-
 
 
 
