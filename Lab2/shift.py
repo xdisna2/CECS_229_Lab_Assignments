@@ -66,7 +66,9 @@ def shift_cipher_decode(string, n):
 
 			# Lower then do Lower-Case equation and append
 			else:
+				# Basically translate it to equal 0-25 alphabet letters
 				x = ord(characters) - 97
+				# Then in the end add back 97 to get the shifted value
 				temp = ((x - n) % 26) + 97
 
 			ciph = chr(temp)
