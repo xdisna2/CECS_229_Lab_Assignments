@@ -6,6 +6,16 @@
 			#  Should be able to accommodate upper and lower case letters
 # restrictions:  DO NOT USE A DICTIONARY TO ENCODE YOUR LETTERS
 def shift_cipher_encode(string, n):
+	# First do a loop that cycles through the letters of the string
+	# Check to see if it is in the alphabet (if not then append and skip)
+	# If it is in the alphabet, check to see if its Upper or Lower
+	# Lower then do Lower-Case equation and append
+	# Upper then do Upper-Case equation and append
+
+
+	# Lower - Case equation (ASCII - 97 + n) % 26
+	# Upper - Case equation (ASCII - 65 + n) % 26
+
 	pass
 
 
@@ -18,6 +28,17 @@ def shift_cipher_encode(string, n):
 			#  Should be able to accommodate upper and lower case letters
 # restrictions:  DO NOT USE A DICTIONARY TO ENCODE YOUR LETTERS
 def shift_cipher_decode(string, n):
+	# First do a loop that cycles through the letters of the string
+	# Check to see if it is in the alphabet (if not then append and skip)
+	# If it is in the alphabet, check to see if its Upper or Lower
+	# Lower then do Lower-Case equation and append
+	# Upper then do Upper-Case equation and append
+
+	# Lower - Case equation (ASCII + 97 + n) % 26
+	# Upper - Case equation (ASCII + 65 + n) % 26
+
+
+
 	pass
 
 
