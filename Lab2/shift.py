@@ -6,19 +6,39 @@
 			#  Should be able to accommodate upper and lower case letters
 # restrictions:  DO NOT USE A DICTIONARY TO ENCODE YOUR LETTERS
 def shift_cipher_encode(string, n):
-	# First do a loop that cycles through the letters of the string
-	# Check to see if it is in the alphabet (if not then append and skip)
-	# If it is in the alphabet, check to see if its Upper or Lower
-	# Lower then do Lower-Case equation and append
-	# Upper then do Upper-Case equation and append
-
 
 	# Lower - Case equation (ASCII - 97 + n) % 26
 	# Upper - Case equation (ASCII - 65 + n) % 26
 
-	pass
+	ciphered = []
+	# First do a loop that cycles through the letters of the string
+	for characters in string:
+		# Check to see if it is in the alphabet (if not then append and skip)
+		if characters.isalpha():
+			# If it is in the alphabet, check to see if its Upper or Lower
 
+			if characters.isupper():
+				# Upper then do Upper-Case equation and append
+				x = ord(characters) - 65
+				temp = ((x + n) % 26) + 65
 
+			# Lower then do Lower-Case equation and append
+			else:
+				x = ord(characters) - 97
+				temp = ((x + n) % 26) + 97
+
+			ciph = chr(temp)
+			ciphered.append(ciph)
+
+		else:
+			# This is to account for non-alphabetical .,*spaces etc.
+			ciphered.append(characters)
+
+	converted = ""
+	for element in ciphered:
+		converted += element
+
+	return converted
 
 # function name: shift_cipher_decode
 # inputs: string - string to encode (str)
@@ -28,42 +48,39 @@ def shift_cipher_encode(string, n):
 			#  Should be able to accommodate upper and lower case letters
 # restrictions:  DO NOT USE A DICTIONARY TO ENCODE YOUR LETTERS
 def shift_cipher_decode(string, n):
-	# First do a loop that cycles through the letters of the string
-	# Check to see if it is in the alphabet (if not then append and skip)
-	# If it is in the alphabet, check to see if its Upper or Lower
-	# Lower then do Lower-Case equation and append
-	# Upper then do Upper-Case equation and append
 
 	# Lower - Case equation (ASCII + 97 + n) % 26
 	# Upper - Case equation (ASCII + 65 + n) % 26
 
+	ciphered = []
+	# First do a loop that cycles through the letters of the string
+	for characters in string:
+		# Check to see if it is in the alphabet (if not then append and skip)
+		if characters.isalpha():
+			# If it is in the alphabet, check to see if its Upper or Lower
 
+			if characters.isupper():
+				# Upper then do Upper-Case equation and append
+				x = ord(characters) - 65
+				temp = ((x - n) % 26) + 65
 
-	pass
+			# Lower then do Lower-Case equation and append
+			else:
+				x = ord(characters) - 97
+				temp = ((x - n) % 26) + 97
 
+			ciph = chr(temp)
+			ciphered.append(ciph)
 
-# test cases
-# These MUST be commented out or deleted in your submission
-# otherwise the grading script will pick it up! You WILL lose points!
-# please note that these are not the only test cases that will be run
+		else:
+			# This is to account for non-alphabetical .,*spaces etc.
+			ciphered.append(characters)
 
-# Wmfauw ak yjwsl! :)
-print(shift_cipher_encode("Eunice is great! :)", 18)) 
-# Qobkbny sc qbokd dyy!!!
-print(shift_cipher_encode("Gerardo is great too!!!", 10)) 
-# Gjwsfwit nx fqxt lwjfy! :I
-print(shift_cipher_encode("Bernardo is also great! :D", 5)) 
-# WYWM229 cm nby vymn wfumm un WMOFV
-print(shift_cipher_encode("CECS229 is the best class at CSULB", 20)) 
+	converted = ""
+	for element in ciphered:
+		converted += element
 
-# This is the 2nd lab.
-print(shift_cipher_decode("Qefp fp qeb 2ka ixy.", 23))
-# ThErE r m@ny m0rE Labs 2 come!
-print(shift_cipher_decode("KyViV i d@ep d0iV Crsj 2 tfdv!", 17))
-# s0 B prepared!
-print(shift_cipher_decode("y0 H vxkvgxkj!", 6))
-# pineapples
-print(shift_cipher_decode("buzqmbbxqe", 12))
+	return converted
 
 
 
