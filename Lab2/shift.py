@@ -34,6 +34,7 @@ def shift_cipher_encode(string, n):
 			# This is to account for non-alphabetical .,*spaces etc.
 			ciphered.append(characters)
 
+	# Converts list to string
 	converted = ""
 	for element in ciphered:
 		converted += element
@@ -78,6 +79,7 @@ def shift_cipher_decode(string, n):
 			# This is to account for non-alphabetical .,*spaces etc.
 			ciphered.append(characters)
 
+	# Converts list to string
 	converted = ""
 	for element in ciphered:
 		converted += element
