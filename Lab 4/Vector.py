@@ -33,7 +33,12 @@ class Vector:
 	# output: if subtraction is possible, return the differences
 	# 		  if subtraction is not possible, return None
 	def __sub__(self, other):
-		return 0 #FIX ME
+		if self.size != other.size:
+			return None
+		sub = []
+		for i in range(self.size):
+			sub.append(self.get_ith_element(i) - other.get_ith_element(i))
+		return Vector(sub)
 
 
 
@@ -43,7 +48,15 @@ class Vector:
 	# output: if dot product is possible, return the dot product
 	# 		  if dot product is not possible, return None
 	def __mul__(self, other):
-		return 0 #FIX ME
+		if self.size != other.size:
+			return None
+		mul = []
+		sumat = 0
+		for i in range(self.size):
+			mul.append(self.get_ith_element(i) * other.get_ith_element(i))
+		for x in mul:
+			sumat += x
+		return sumat
 
 
 
