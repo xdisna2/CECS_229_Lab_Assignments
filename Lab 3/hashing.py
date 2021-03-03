@@ -45,7 +45,6 @@ class hash_table:
 	# assumptions: value will always be an integer
 		#	your table will always be big enough
 	def hash(self, value):
-		# TODO :
 
 		index_start = value % self.size
 
