@@ -25,7 +25,7 @@ def sig_change(oldmat, newmat):
 # function name: prob_x
 # inputs: mat - n x n numpy array with PERCENTAGES
 		# x - number of iterations
-# output: n x n numpy array that represents the probability matrix after x stages
+# output: n x n numpy array that represents the probability matrix after x stages (DECIMALS)
 		# Use per_to_dec here
 # assumptions: The test case shows a 3x3 matrix, but other test cases can have
 			#  more or less rows/columns (always square matrix though)
@@ -36,7 +36,7 @@ def prob_x(mat, x):
 
 # function name: long_run_dist
 # inputs: mat - n x n numpy array with PERCENTAGES
-# output: n x n numpy array where percentages are converted to decimals
+# output: n x n numpy array where percentages are converted to DECIMALS
 		# USE sig_change and per_to_dec
 # assumptions: The test case shows a 3x3 matrix, but other test cases can have
 			#  more or less rows/columns (always square matrix though)
@@ -47,12 +47,13 @@ def long_run_dist(probs):
 
 
 
-#**********************************************************************
+
+"""**********************************************************************"""
 # test cases
 # Everything below MUST be commented out or deleted in your submission
 # otherwise the grading script will pick it up! You WILL lose points!
 # please note that these are not the only test cases that will be run
-#**********************************************************************
+"""**********************************************************************"""
 
 def checker(expected, actual):
 	if type(expected) == type(actual):
@@ -62,7 +63,7 @@ def checker(expected, actual):
 			else: 
 				print("expected " + str(expected) + ", but got " + str(actual))
 		else:
-			if expected.all() == actual.all():
+			if np.array_equal(np.round(expected, decimals=10), np.round(actual, decimals=10)):
 				print("CORRECT!")
 			else: 
 				print("expected " + str(expected) + ", but got " + str(actual))
@@ -70,7 +71,7 @@ def checker(expected, actual):
 		print("Data type issue!")
 
 
-#**********************************************************************
+"""**********************************************************************"""
 
 prob = np.array([[80, 18, 2],
 				[40, 50, 10],
@@ -105,16 +106,15 @@ checker(expected2, test2)
 
 
 print("\ntest 3:")
-test3 = prob_x(prob, 2)
+test3 = prob_x(prob, 3)
 expected3 = expected0.dot(expected0).dot(expected0)
 checker(expected3, test3)
 
 
 
-print("\ntest 4:")
+print("\ntest 4 (note that this works if test 3 works):")
 test4 = long_run_dist(prob)
-expected4 = np.array([[0.64887596, 0.29769378, 0.05343026],
-					 [0.64882099, 0.29773604, 0.05344296],
-					 [0.64878924, 0.29776046, 0.0534503 ]])
+expected4 = prob_x(prob, 12)
 checker(expected4, test4)
+
 
