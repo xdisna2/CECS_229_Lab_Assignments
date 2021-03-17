@@ -71,11 +71,21 @@ def prob_x(mat, x):
 # assumptions: The test case shows a 3x3 matrix, but other test cases can have
 			#  more or less rows/columns (always square matrix though)
 def long_run_dist(probs):
-	pass
+	# Basically we are infinitely running this till we find no more change
+	found = True
+	probs = per_to_dec(probs)
 
+	temp = probs
+	while found:
+		# Before next loop save the previously calculated value
+		old_temp = temp
 
+		# We would do our iterations and check to see if change is significant
+		temp = temp.dot(probs)
 
-
+		# Check to see if there is NOT a significant change
+		if not(sig_change(old_temp, temp)):
+			return temp
 
 
 """**********************************************************************"""
