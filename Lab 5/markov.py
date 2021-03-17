@@ -4,7 +4,7 @@ import numpy as np
 # inputs: mat - n x n numpy array with percentages
 # output: n x n numpy array where percentages are converted to decimal numbers
 # assumptions: The test case shows a 3x3 matrix, but other test cases can have
-			#  more or less rows/columns (always square matrix though)
+#  more or less rows/columns (always square matrix though)
 def per_to_dec(mat):
 	mat = (1/100) * mat
 	return mat
@@ -25,8 +25,8 @@ def sig_change(oldmat, newmat):
 	num_rows, num_column = oldmat.shape
 
 	# Basically index the row and then column
-	for rows in range(num_rows+1):
-		for columns in range(num_column+1):
+	for rows in range(num_rows):
+		for columns in range(num_column):
 			# Find the difference between the index of the old and new matrix
 			difference = oldmat[rows, columns] - newmat[rows, columns]
 
@@ -50,7 +50,18 @@ def sig_change(oldmat, newmat):
 			#  more or less rows/columns (always square matrix though)
 			#  x>= 1
 def prob_x(mat, x):
-	pass
+	# Convert to decimal form
+	# This will be what we will be multiplying with each iteration
+	mat_dec = per_to_dec(mat)
+
+	# This is what will change per iteration
+	temp = mat_dec
+
+	# Range of 1 to x helps with visualizing iterations
+	for i in range(1, x):
+		temp = temp.dot(mat_dec)
+
+	return temp
 
 
 # function name: long_run_dist
