@@ -58,7 +58,7 @@ def prob_x(mat, x):
 	temp = mat_dec
 
 	# Range of 1 to x helps with visualizing iterations
-	for i in range(1, x):
+	for i in range(x-1):
 		temp = temp.dot(mat_dec)
 
 	return temp
