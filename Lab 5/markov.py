@@ -6,20 +6,39 @@ import numpy as np
 # assumptions: The test case shows a 3x3 matrix, but other test cases can have
 			#  more or less rows/columns (always square matrix though)
 def per_to_dec(mat):
-	pass
+	mat = (1/100) * mat
+	return mat
 
 
 # function name: sig_change
 # inputs: oldmat - n x n numpy array (decimal form)
-		# newmat - n x n numpy array (decimal form)
-# output: True if there is at least one element in newmat that is at least 0.0001 away
-			# from its respective counterpart in oldmat
-		# False otherwise
-# assumptions: The test case shows a 3x3 matrix, but other test cases can have
-			#  more or less rows/columns (always square matrix though)
-def sig_change(oldmat, newmat):
-	pass
+	# newmat - n x n numpy array (decimal form)
 
+# output: True if there is at least one element in newmat that is at least 0.0001 away
+	# from its respective counterpart in oldmat
+	# False otherwise
+
+# assumptions: The test case shows a 3x3 matrix, but other test cases can have
+	#  more or less rows/columns (always square matrix though)
+def sig_change(oldmat, newmat):
+	# Get the rows and column of the matrix
+	num_rows, num_column = oldmat.shape
+
+	# Basically index the row and then column
+	for rows in range(num_rows+1):
+		for columns in range(num_column+1):
+			# Find the difference between the index of the old and new matrix
+			difference = oldmat[rows, columns] - newmat[rows, columns]
+
+			# Once you find the difference, if its greater than 0.0001, then return true
+			if difference > 0.0001:
+				return True
+
+			# Else continue looping through
+			else:
+				continue
+	# If you have not found any SIGNIFICANT difference then return False
+	return False
 
 
 # function name: prob_x
