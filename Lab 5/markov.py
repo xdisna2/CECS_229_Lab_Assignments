@@ -31,7 +31,7 @@ def sig_change(oldmat, newmat):
 			difference = oldmat[rows, columns] - newmat[rows, columns]
 
 			# Once you find the difference, if its greater than 0.0001, then return true
-			if difference > 0.0001:
+			if difference >= 0.0001:
 				return True
 
 			# Else continue looping through
