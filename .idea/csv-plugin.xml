@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\Lab 5\markov.py">
-          <value>
-            <Attribute>
-              <option name="separator" value="&#9;" />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\Lab 6\birthweight.csv">
           <value>
             <Attribute>
@@ -17,7 +10,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\Lab 6\main.py">
+        <entry key="\Lab 7\data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Lab 7\data2.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
