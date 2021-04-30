@@ -29,12 +29,12 @@ def least_sq(file_name):
 	sum_xy = sum(mat_xy)
 
 	# Find the Slope using the equation given in the PDF
-	N = mat_x.size
+	pair_size = mat_x.size
 
-	slope = ((N * sum_xy) - (sum_x * sum_y)) / ((N * sum_x2) - (sum_x**2))
+	slope = ((pair_size * sum_xy) - (sum_x * sum_y)) / ((pair_size * sum_x2) - (sum_x**2))
 	# Find the Y-Intercept given in the PDF
 
-	y_cept = (sum_y - (slope * sum_x)) / N
+	y_cept = (sum_y - (slope * sum_x)) / pair_size
 
 	# Round to 4 decimal places for both values calculated
 	slope = round(slope, 4)
@@ -52,20 +52,35 @@ def least_sq(file_name):
 # assumptions: The csv file will always have headers in the order of: x, y
 def mat_least_sq(file_name):
 
-	# Get the x-coordinates Matrix
+	# Read Data from CSV
+	data_xy = pd.read_csv(file_name)
+
+	# Get the x-coordinates and y-coordinates Matrix
+	mat_x = data_xy['x'].to_numpy()
+	mat_y = data_xy['y'].to_numpy()
 
 	# Make a column of ONES that's equal of size to x-coordinate Matrix
+	pair_size = mat_x.size
+	col_one = np.ones(pair_size)
 
 	# Concatenate the two matrices into the X matrix
+	X_mat = np.column_stack((mat_x, col_one))
 
 	# Find the slope and y-intercept using the equation in the PDF
+	X_trans = X_mat.T
+	Xt_X = X_trans.dot(X_mat)
+	inverse_Xt = np.linalg.inv(Xt_X)
+	Xt_y = X_trans.dot(mat_y)
+
+	slop_inter = inverse_Xt.dot(Xt_y)
 
 	# Round to 4 decimal places for both values calculated
-
 	# Return those two values
+	slope = round(slop_inter[0], 4)
 
+	y_inter = round(slop_inter[1], 4)
 
-	pass
+	return slope, y_inter
 
 
 
@@ -111,9 +126,9 @@ print("Slope using algebraic least squares:", m1)
 print("y-intercept using algebraic least squares:", b1)
 print()
 
-##m2, b2 = mat_least_sq(csv_file)
-##print("Slope using linear algebra least squares:", m2)
-##print("y-intercept using linear algebra least squares:", b2)
+m2, b2 = mat_least_sq(csv_file)
+print("Slope using linear algebra least squares:", m2)
+print("y-intercept using linear algebra least squares:", b2)
 
 ##plot_reg(csv_file, True)
 
