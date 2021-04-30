@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 # function name: least_sq
 # inputs: file_name- name of the csv file 
 # output: m(slope), b(y-intercept) (IN THAT EXACT ORDER!!!)
@@ -10,23 +9,40 @@ import matplotlib.pyplot as plt
 		# YOU HAVE BEEN WARNED! YOU WILL GET IT WRONG IF YOU DO NOT RETURN THE CORRECT THINGS IN THE CORRECT ORDER!!!!
 # assumptions: The csv file will always have headers in the order of: x, y
 def least_sq(file_name):
+	# Read file data from csv
+	data_xy = pd.read_csv(file_name)
 
 	# Get matrix X and Y
+	mat_x = data_xy['x'].to_numpy()
+	mat_y = data_xy['y'].to_numpy()
+
 	# Get matrix X^2
+	mat_x2 = mat_x**2
+
 	# Get matrix XY
+	mat_xy = mat_x * mat_y
 
 	# Find the Sum of all three above
+	sum_x = sum(mat_x)
+	sum_y = sum(mat_y)
+	sum_x2 = sum(mat_x2)
+	sum_xy = sum(mat_xy)
 
 	# Find the Slope using the equation given in the PDF
+	N = mat_x.size
 
+	slope = ((N * sum_xy) - (sum_x * sum_y)) / ((N * sum_x2) - (sum_x**2))
 	# Find the Y-Intercept given in the PDF
 
+	y_cept = (sum_y - (slope * sum_x)) / N
+
 	# Round to 4 decimal places for both values calculated
+	slope = round(slope, 4)
+	y_cept = round(y_cept, 4)
 
 	# Return those two values
 
-	pass
-
+	return slope, y_cept
 
 # function name: mat_least_sq
 # inputs: file_name- name of the csv file 
@@ -95,11 +111,11 @@ print("Slope using algebraic least squares:", m1)
 print("y-intercept using algebraic least squares:", b1)
 print()
 
-m2, b2 = mat_least_sq(csv_file)
-print("Slope using linear algebra least squares:", m2)
-print("y-intercept using linear algebra least squares:", b2)
+##m2, b2 = mat_least_sq(csv_file)
+##print("Slope using linear algebra least squares:", m2)
+##print("y-intercept using linear algebra least squares:", b2)
 
-plot_reg(csv_file, True)
+##plot_reg(csv_file, True)
 
-plot_reg(csv_file, False)
+##plot_reg(csv_file, False)
 
