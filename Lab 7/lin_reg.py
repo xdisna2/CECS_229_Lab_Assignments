@@ -95,31 +95,62 @@ def mat_least_sq(file_name):
 def plot_reg(file_name, using_matrix):
 
 	# Get data from the file_name
+	df_xy = pd.read_csv(file_name)
+
 	# Configure using to_numpy() (Look at Lab 6 Main for reference)
+	main_x = df_xy['x'].to_numpy()
+	main_y = df_xy['y'].to_numpy()
+
 	# Plot using SCATTER
+	plt.scatter(main_x, main_y, color='red', label='data points')
 
-
+	plt.xlabel("X-Coordinates")
+	plt.ylabel("Y-Coordinates")
 
 	# Determine what type of plot we are graphing
 	# True = mat_least_Sq
 	# False = least_sq
 
 	# If True, then call the mat_least_Sq and pass the file_name
+	if using_matrix:
+		# Receive the slope and Y-intercept
+		slope, y_inter = mat_least_sq(file_name)
 
-	# Receive the slope and Y-intercept
-	# Take the smallest and largest x-coordinate and plug it into the equation
-	# Plot those two points using the regular plot
+		# Based on the type of graph change the titles
+		# Concatenate the legend_label as well
+		plt.title("Using Matrix Least Squares")
+		legend_label = "y=" + str(slope) + "x+" + str(y_inter)
 
 	# If False, do the same process just with a different function
+	else:
+		# Receive the slope and Y-intercept
+		slope, y_inter = least_sq(file_name)
 
-	# Receive the slope and Y-intercept
+		# Based on the type of graph change the titles
+		# Concatenate the legend_label as well
+		plt.title("Using Algebra Least Squares")
+		legend_label = "y=" + str(slope) + "x+" + str(y_inter)
+
 	# Take the smallest and largest x-coordinate and plug it into the equation
-	# Plot those two points using the regular plot
+	min_x, max_x = min(main_x), max(main_x)
 
-	pass
+	# Find the corresponding y-coordinate
+	min_y = (min_x * slope) + y_inter
+	max_y = (max_x * slope) + y_inter
+
+	# Place into list
+	x_coords = [min_x, max_x]
+	y_coords = [min_y, max_y]
+
+	# Plot those two points using the regular plot
+	plt.plot(x_coords, y_coords, color='blue', label=legend_label)
+
+	# Show the legend and plot at the end
+	plt.legend()
+	plt.show()
 
 ######## TEST CASES ########
-csv_file = "data.csv"
+csv_file = "data2.csv"
 
 m1, b1 = least_sq(csv_file)
 print("Slope using algebraic least squares:", m1)
@@ -130,7 +161,6 @@ m2, b2 = mat_least_sq(csv_file)
 print("Slope using linear algebra least squares:", m2)
 print("y-intercept using linear algebra least squares:", b2)
 
-##plot_reg(csv_file, True)
-
-##plot_reg(csv_file, False)
+plot_reg(csv_file, True)
+plot_reg(csv_file, False)
 
