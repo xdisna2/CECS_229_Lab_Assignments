@@ -3,8 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import math
 
-
-
 # function name: most_similar_cosine
 # inputs: file_name- name of the csv file that holds classes
 		# test_vec- vector that you are trying to classify
@@ -58,7 +56,9 @@ def most_similar_cosine(file_name, test_vec):
 		# Use equation to calculate cos(theta) (cos_theta represents the similarity)
 		cos_theta = dot_ab / (mag_a * mag_b)
 
+		# Calculate the degree (in radians)
 		degree = math.degrees(math.acos(cos_theta))
+
 		# Since we need to find the similarities store in a list
 		sim_numbers.append(degree)
 
