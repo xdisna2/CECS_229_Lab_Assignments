@@ -41,7 +41,6 @@ def least_sq(file_name):
 	y_cept = round(y_cept, 4)
 
 	# Return those two values
-
 	return slope, y_cept
 
 # function name: mat_least_sq
@@ -77,12 +76,10 @@ def mat_least_sq(file_name):
 	# Round to 4 decimal places for both values calculated
 	# Return those two values
 	slope = round(slop_inter[0], 4)
-
 	y_inter = round(slop_inter[1], 4)
 
+	# Return the two values
 	return slope, y_inter
-
-
 
 # function name: plot_reg
 # inputs: mat - file_name- name of the csv file
@@ -104,6 +101,7 @@ def plot_reg(file_name, using_matrix):
 	# Plot using SCATTER
 	plt.scatter(main_x, main_y, color='red', label='data points')
 
+	# Label X and Y Axis
 	plt.xlabel("X-Coordinates")
 	plt.ylabel("Y-Coordinates")
 
@@ -162,5 +160,5 @@ print("Slope using linear algebra least squares:", m2)
 print("y-intercept using linear algebra least squares:", b2)
 
 plot_reg(csv_file, True)
-plot_reg(csv_file, False)
+plot_reg("data.csv", False)
 
